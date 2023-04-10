@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>input.html</title>
+<style>
+</style>
+
+<script type ="text/javascript">
+	function check(){
+		// window.document.mf.submit();
+		if(mf.name.value == ""){
+			alert('작성자를 입력하세요');
+			mf.name.focus();
+			return;
+		}
+		if(mf.msg.value == ""){
+			alert('메모 내용을 입력하세요');
+			mf.msg.focus();
+			return;
+		}
+		mf.submit();
+	}
+
+</script>
+
+</head>
+<body>
+	<div id="wrap">
+		<form name="mf" action="MemoAdd" method="GET">
+			<table border="1">
+				<tr>
+					<th colspan=2><h1>::한줄 메모장::</h1></th>
+				</tr>
+				<tr>
+					<td width="20%">작성자</td>
+					<td width="80%"><input type="text" name="name"
+						placeholder="Name"></td>
+				</tr>
+				<tr>
+					<td width="20%">메모 내용</td>
+					<td width="80%"><input type="text" name="msg"
+						placeholder="Message"></td>
+				</tr>
+				<tr>
+					<td colspan=2; align="center">
+						<button type ="button" onclick ="check()">글 남기기</button>
+						<button type ="reset">다시 쓰기</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
