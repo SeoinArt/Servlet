@@ -3,32 +3,25 @@ package memo.app;
 import java.sql.Date;
 /**
  * @author a
- * Domain 객체
+ * Domain 객체-- Model에 속한다
  * VO(Value Object) : DB에서 가져온 값이나, UI통해 입력받은 값을 담고 있는 객체
  * memo테이블에 있는 컬럼들==> class의 member변수로 옮겨 구성
  */
-public class MemoVo {
+public class MemoVO {
 	private int no;
 	private String name;
 	private String msg;
 	private java.sql.Date wdate;
 	
-	public MemoVo() {
+	public MemoVO() {
 		this(0,null,null,null);
 	}
-	public MemoVo(int no, String name, String msg) {
-		this(no,name,msg,null);
-	}
-	
-	public MemoVo(int no, String name, String msg, Date wdate) {
+	public MemoVO(int no, String name, String msg, Date wdate) {
 		super();
 		this.no = no;
 		this.name = name;
 		this.msg = msg;
 		this.wdate = wdate;
-	}
-	public MemoVo(String a1, String a2) {
-		this(0,a1,a2,null);
 	}
 	//setter, getter-----
 	public int getNo() {
@@ -55,6 +48,5 @@ public class MemoVo {
 	public void setWdate(java.sql.Date wdate) {
 		this.wdate = wdate;
 	}
-	
 
 }////////////////////////////

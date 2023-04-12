@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"  import="memo.app.*"  %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>input.html</title>
+<title>::메모 수정::</title>
 <!-- memo.css참조--------------------------------------------- -->
-<link rel="stylesheet" type="text/css" href="../css/memo.css">
+<link rel="stylesheet" type="text/css" href="css/memo.css">
 <!-- -------------------------------------------------------- -->
 <script type="text/javascript">
 	function check(){
@@ -35,18 +37,43 @@
 <!-- http://localhost:9090/MyWeb/memo/MemoAdd?name=sdfsdf&msg=sdfsdf
 	http://localhost:9090/MyWeb/MemoAdd?name=aaa&msg=bbb
  -->
-	<form name="mf" action="../MemoAdd" method="get">
+ <% 
+ 	Object obj=request.getAttribute("memo"); 
+ 	MemoVO vo=(MemoVO)obj;
+ 	if(vo==null){
+ %>
+ 		<script>
+ 			alert('존재하지 않는 글입니다');
+ 			location.href='MemoList';//웹브라우저의 url을 변경해서 이동한다
+ 		</script> 	
+ <%	
+ 		return;
+ 	}//if-----
+ %>
+ 
+	<form name="mf" action="MemoEdit" method="post">
 		<!-- table로 화면과 같이 구성하세요 -->
 		<table border="1">
 			<tr>
-				<th colspan="2"><h1>::한줄 메모장::</h1></th>
+				<th colspan="2"><h1>::한줄 메모장 글수정::</h1></th>
 			</tr>
+			<tr>
+				<td width="20%">
+					<b>글번호</b>
+				</td>
+				<td width="80%">
+					<input type="text" name="no" value="<%=vo.getNo()%>"
+					 placeholder="No" readonly style="width:40%">
+				</td>				
+			</tr>
+			
 			<tr>
 				<td width="20%">
 					<b>작성자</b>
 				</td>
 				<td width="80%">
-					<input type="text" name="name" placeholder="Name">
+					<input type="text" name="name" value="<%=vo.getName()%>"
+					 placeholder="Name">
 				</td>				
 			</tr>
 			
@@ -55,12 +82,13 @@
 					<b>메모 내용</b>
 				</td>
 				<td width="80%">
-					<input type="text" name="msg" placeholder="Message">
+					<input type="text" name="msg"  value="<%=vo.getMsg()%>"
+					 placeholder="Message">
 				</td>				
 			</tr>
 			<tr>
 				<td colspan="2">
-					<button type="button" onclick="check()">글 남기기</button>
+					<button type="button" onclick="check()">글 수정하기</button>
 					<button type="reset">다시 쓰기</button>
 				</td>
 			</tr>
