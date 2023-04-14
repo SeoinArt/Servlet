@@ -37,6 +37,7 @@
                 <li><a href="<%=myctx %>/member/join.jsp">Signup</a></li>
                 <li><a href="<%=myctx %>/login/login.jsp">Signin</a></li>
                 <li><a href="<%=myctx %>/board/list">Board</a></li>
+                <li><a href="<%=myctx %>/member/list.jsp">Users</a>
             </ul>
         </nav>
 
