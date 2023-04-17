@@ -237,3 +237,15 @@ span.ck {
 	font-size: 0.8em;
 	color: #f45050
 }
+
+.mstate0{ color : #3c486b; }
+.mstate-1{ color : green; }
+.mstate-2{ color : #f45050; }
+.mstate9{ color : #f9d949; }
+
+input.radui_btn{
+	width:15%;
+	text-align:left;
+}
+
+

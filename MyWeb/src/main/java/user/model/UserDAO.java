@@ -13,6 +13,26 @@ public class UserDAO {
 		System.out.println("UserDAO()생성자...");
 	}//------------------------------
 	
+	public boolean idCheck(String userid) throws SQLException{
+		try {
+			con = DBUtil.getCon();
+			String sql = "select idx from member where userid=?"; // unique
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userid);
+			rs = ps.executeQuery();
+			// 결과는 있으면 1개 레코드를 반환, 없으면 x
+			
+			boolean b =rs.next();
+			return !b;
+			/*if(b) return false;
+			else return true;*/
+			
+		}finally {
+			close();
+		}
+	}
+	
 	public int insertUser(UserVO user) throws SQLException{
 		try {
 			con=DBUtil.getCon();
@@ -39,15 +59,19 @@ public class UserDAO {
 	
 	public List<UserVO> listUser() throws SQLException{
 		try {
-			con = DBUtil.getCon();
-			String sql = "select * from member order by idx desc ";
-			ps = con.prepareStatement(sql);
-			rs = ps.executeQuery();
+			con=DBUtil.getCon();
+			StringBuilder buf=new StringBuilder("select member.*, ")
+					.append(" decode(mstate,0,'활동회원',-1,'정지회원',-2,'탈퇴회원',9,'관리자') mstateStr ")
+					.append(" from member order by idx desc");			
+			//String sql="select * from member order by idx desc";
+			String sql=buf.toString();
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
 			return makeList(rs);
 		}finally {
 			close();
 		}
-	}
+	}//-------------------------------
 	
 	public List<UserVO> makeList(ResultSet rs) throws SQLException{
 		List<UserVO> arr = new ArrayList<>();
@@ -67,8 +91,9 @@ public class UserDAO {
 			java.sql.Date indate = rs.getDate("indate");
 			int mileage = rs.getInt("mileage");
 			int mstate = rs.getInt("mstate");
+			String mstateStr = rs.getString("mstateStr");
 			
-			UserVO vo = new UserVO(idx,name, userid, pwd, hp1, hp2, hp3, post, addr1, addr2, indate, mileage, mstate,"");
+			UserVO vo = new UserVO(idx,name, userid, pwd, hp1, hp2, hp3, post, addr1, addr2, indate, mileage, mstate,mstateStr);
 			arr.add(vo);
 		}// while -----
 		return arr;
