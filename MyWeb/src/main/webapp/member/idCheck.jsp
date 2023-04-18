@@ -1,3 +1,4 @@
+<%@page import="user.model.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" type="text/css" href="../css/layout.css">
@@ -24,8 +25,10 @@
 <jsp:useBean id="userDao" class="user.model.UserDAO" scope="session"/>
 <% 
 	boolean isUse=userDao.idCheck(userid);
+
 	if(isUse){
 %>	
+
 <div class="container m2" style="margin-top:2em">
 	<h3>ID로 [<span class="ck"><%=userid%></span>]을 사용할 수 있습니다</h3>
 	<br>

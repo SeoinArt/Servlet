@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "user.model.*" %>
 <%
 	// 컨텐스트명 알아내기
 	String myctx =request.getContextPath();
 	/*  System.out.println("myctx : "+myctx);*/
+	UserVO loginUser=(UserVO)session.getAttribute("loginUser");
+	boolean isLogin = (loginUser==null)? false:true;
 %>    
       
     
@@ -35,9 +37,20 @@
             <ul>
                 <li><a href="<%=myctx %>/main.jsp">Home</a></li>
                 <li><a href="<%=myctx %>/member/join.jsp">Signup</a></li>
-                <li><a href="<%=myctx %>/login/login.jsp">Signin</a></li>
-                <li><a href="<%=myctx %>/board/list">Board</a></li>
-                <li><a href="<%=myctx %>/member/list.jsp">Users</a>
+                <% 
+                if(!isLogin){
+                %>
+                	<li><a href="<%=myctx%>/login/login.jsp">Signin</a></li>
+                <%}else{ %>
+                	<li><a href="<%=myctx%>/login/logout.jsp">Signout</a></li>
+                <% }%>
+                <li><a href="<%=myctx%>/board/list">Board</a></li>
+                <li><a href="<%=myctx%>/member/list.jsp">Users</a>
+                
+                <%if(isLogin){ %>
+                <li style="background-color :#19376d">
+                <a href="#" style='color:white'><%=loginUser.getUserid()%>님 로그인 중...</a>
+                <%} %>
             </ul>
         </nav>
 

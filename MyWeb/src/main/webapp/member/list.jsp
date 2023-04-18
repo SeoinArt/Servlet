@@ -33,7 +33,7 @@
 					<td><%=vo.getAllHp()%></td>
 					<td class="mstate<%=vo.getMstate()%>"><%=vo.getMstateStr()%></td>
 					<td>
-						<a href="%" onclick="userEdit('<%=vo.getIdx() %>>)')">수정</a> 
+						<a href="#" onclick="userEdit('<%=vo.getIdx()%>')">수정</a> 
 						|
 						<a href="javascript:userDel('<%=vo.getIdx()%>')">삭제</a>
 					</td>
@@ -41,7 +41,7 @@
 		<% }}%>
 	</table>
 	<!-- 수정 또는 삭제 처리를 위한 form -->
-	<form name = "userF">
+	<form name = "userF" method="post">
 		<!-- hidden field -->
 		<input type="hidden" name ="idx">
 	
@@ -55,9 +55,12 @@
 		userF.submit();
 	}
 	function userDel(num){
-		userF.idx.value = num;
-		userF.action = 'delete.jsp';
-		userF.submit();
+		let yn = window.confirm('정말 삭제할까요?');
+		if(yn){
+			userF.idx.value = num;
+			userF.action = 'delete.jsp';
+			userF.submit();
+		}
 	}
 
 </script>
