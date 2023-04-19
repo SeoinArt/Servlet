@@ -208,34 +208,35 @@ span.ck{
 	color:#F45050;
 }
 .mstate0{
-	color:#3c486b;
+	color:#3C486B;
 }
 .mstate-1{
 	color:green;
 }
 .mstate-2{
-	color:red;
+	color:#F45050;
 }
-.mstate-9{
+.mstate9{
 	color:#F9D949;
 }
 input.radio_btn{
 	width:15%;
+	text-align:left;
 }
 div#loginDiv{
 	width:60%;
 	margin:auto;
-}
-#LoginDiv table{
-	width:100%;
-	margin:1em auto;
 	font-size:0.9em;
 }
-#LoginDiv td{
+#loginDiv table{
+	width:100%;
+	margin:1em auto;
+}
+#loginDiv td{
 	padding: 4px;
 }
 #saveId{
-	width:20%;
-	margin-right:7px;
+	width:14%;
+	margin-right:10px;
 }
 

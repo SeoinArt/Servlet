@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <h1>include 액션을 이용해서 ex03.jsp페이지를 포함시켜 봅시다</h1>
-<h2>include 액션은 소스를 포함시키는 방식이 아니라, 실행 결과를 포함시키는 방식이다. </h1>
-<h3>JSP 흐름을 ex03.jsp로 이동시켜 그 실행 결과를 현재 위치에 포함시킨다.</h3>
-<hr color="blue">
-<jsp:include page="ex03.jsp"/>
+<h2>include 액션은 소스를 포함시키는 방식이 아니라, 실행결과를 포함시키는 방식이다</h2>
+<h3>JSP흐름을 ex03.jsp로 이동시켜 그 실행 결과를 현재 위치에 포함시킨다</h3>
+<hr color='blue'>
 
-<%-- 
-액션 요소(Action Element) 
-	<jsp:include></jsp:include> or <jsp:include page ="포함시킬 페이지"/>
+<jsp:include page="ex03.jsp"/> 
+<br><br/>
+<%--
+액션 요소 (Action Element)
+ <jsp:include page="포함시킬페이지" /> 
 --%>
 
 <%--

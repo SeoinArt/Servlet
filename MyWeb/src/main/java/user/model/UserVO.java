@@ -59,6 +59,7 @@ public class UserVO {
 
 	public void setName(String name) {
 		this.name = name;
+		System.out.println("setName(): "+name);
 	}
 
 	public String getUserid() {
@@ -67,6 +68,7 @@ public class UserVO {
 
 	public void setUserid(String userid) {
 		this.userid = userid;
+		System.out.println("setUserid(): "+userid);
 	}
 
 	public String getPwd() {
@@ -144,26 +146,19 @@ public class UserVO {
 	public int getMstate() {
 		return mstate;
 	}
-
 	public void setMstate(int mstate) {
 		this.mstate = mstate;
 	}
-
 	public String getMstateStr() {
 		return mstateStr;
 	}
-
 	public void setMstateStr(String mstateStr) {
 		this.mstateStr = mstateStr;
 	}
-	
 	public String getAllHp() {
 		return hp1+"-"+hp2+"-"+hp3;
 	}
 	public String getAllAddr() {
-		return addr1+addr2;
+		return "["+post+"] "+addr1+" "+addr2;
 	}
-	
-	
-	
 }///////////////////////////////////

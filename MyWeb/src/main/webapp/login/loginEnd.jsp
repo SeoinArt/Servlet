@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"  import="user.model.*" errorPage="/login/errorAlert.jsp"%>
+    pageEncoding="UTF-8"  import="user.model.*" errorPage="/login/errorAlert.jsp"  %>
 <%
 	request.setCharacterEncoding("utf-8");
 	String uid=request.getParameter("userid");
 	String pwd=request.getParameter("pwd");
+	//아이디 저장 체크박스값 받기
+	String saveId=request.getParameter("saveId");
+	System.out.println("saveId: "+saveId);
 	
 	if(uid==null||pwd==null||uid.trim().isEmpty()||pwd.trim().isEmpty()){
 		response.sendRedirect("login.jsp");
@@ -18,12 +21,30 @@
 %>
 <jsp:useBean id="userDao" class="user.model.UserDAO" scope="session"/>
 <%
-	UserVO loginUser=userDao.loginCheck(uid,pwd);
+	UserVO loginUser=userDao.loginCheck(uid, pwd);
 	if(loginUser!=null){
-		/* out.println(loginUser.getName()+"님 환영합니다"); */
-		// 로그인 성공했다면 로그인한 사람 정보를 세션에 저장한다. ==> "xxx님 로그인 중..."
-		// HttpSessin <= request.getSession()
+		//out.println(loginUser.getName()+"님 환영합니다");
+		//로그인 성공을 했다면 로그인한 사람 정보를 세션 저장하자 ==>"xxx님 로그인 중..."
+		//session 내장객체: HttpSession타입
+		//HttpSession <=  request.getSession()
 		session.setAttribute("loginUser", loginUser);
+		Cookie ck=new Cookie("uid", loginUser.getUserid());
+		if(saveId!=null){
+		//(1) saveId에 체크했다면 쿠키를 생성해서 uid란 키값으로 사용자 아이디를 저장하고 유효시간을 1주일 정도 주자
+			ck.setMaxAge(60*60*24*7);//7일간 유효	
+		}else{
+		//(2) saveId에 체크 안했다면 => 쿠키 삭제
+			ck.setMaxAge(0);//쿠키 삭제
+		}
+		ck.setPath("/");
+		//path설정 "/"
+		response.addCookie(ck);
+		//응답 객체에 쿠키 추가
 		response.sendRedirect("../main.jsp");
 	}
 %>
+
+
+
+
+

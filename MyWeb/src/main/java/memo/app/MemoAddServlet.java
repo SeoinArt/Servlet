@@ -9,6 +9,7 @@ import javax.servlet.annotation.*;
 //tomacat/lib/servlet-api.jar => Servlet 관련 라이브러리
 //tomacat/lib/jsp-api.jar     => JSP 관련 라이브러리
 //jdbc driver=> ojdbc6.jar를 복사하여 tomcat/lib아래 붙여넣기 하자
+//get,post,delete,put,option
 @WebServlet("/MemoAdd")
 public class MemoAddServlet extends HttpServlet {
 	
