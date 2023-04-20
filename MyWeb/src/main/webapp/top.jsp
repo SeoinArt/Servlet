@@ -37,10 +37,12 @@
             <!-- nav -->
             <ul>
                 <li><a href="<%=myctx%>/main.jsp">HOME</a></li>
-                <li><a href="<%=myctx%>/member/join.jsp">Signup</a></li>
                 <%
+                
                 if(!isLogin){//로그인 하지 않았다면
                 %>
+				<li><a href="<%=myctx%>/member/join.jsp">Signup</a></li>
+                
                		 <li><a href="<%=myctx%>/login/login.jsp">Signin</a></li>
                 <%}else{  //로그인 했다면 %>
                 	<li><a href="<%=myctx%>/login/logout.jsp">Logout</a></li>
